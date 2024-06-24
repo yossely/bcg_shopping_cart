@@ -1,0 +1,24 @@
+{
+  "name": "shopping_cart",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shopping_cart/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "shopping_cart:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "shopping_cart:build:development"
+        },
+        "production": {
+          "buildTarget": "shopping_cart:build:production"
+        }
+      }
+    }
+  }
+}
