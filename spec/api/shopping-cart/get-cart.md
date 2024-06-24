@@ -51,7 +51,7 @@ The `data` field contains the `Cart` information:
 ```json
 {
   "data": {
-    items: [
+    "items": [
       {
         "sku": "120P90",
         "name": "Google Home",
@@ -60,7 +60,7 @@ The `data` field contains the `Cart` information:
         "totalPrice": 99.98
       }
     ],
-    totalPrice: 99.98
+    "totalPrice": 99.98
   }
 }
 ```

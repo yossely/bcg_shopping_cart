@@ -49,8 +49,8 @@ The `data` field contains the `Cart` information updated:
 ```json
 {
   "data": {
-    items: [],
-    totalPrice: 0
+    "items": [],
+    "totalPrice": 0
   }
 }
 ```
