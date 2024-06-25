@@ -1,12 +1,11 @@
 import { Router, Request, Response } from 'express';
+import { itemsService } from '../services/items.service';
 
-// New Router instance
-const router = Router();
+export const itemsRoutes = Router();
 
 // List items
-router.get('/', (req: Request, res: Response) => {
-  // TODO: get items from service -> DAL
-  res.send([]);
-});
+itemsRoutes.get('/', async (req: Request, res: Response) => {
+  const items = await itemsService.getAll();
 
-export default router;
+  res.send({ data: items });
+});

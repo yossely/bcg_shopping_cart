@@ -58,9 +58,17 @@ More details about each endpoint can be found in the `/spec/api/shopping-cart` d
 
 ---
 
+## Requirements
+
+- Git
+- Node
+- Docker
+
 ## Start the application
 
-Run `npx nx serve shopping_cart` to start the development server. Happy coding!
+1. Create `.env` file. See `.env.example` to set the environment variables needed.
+2. Start local DB (Redis) using `npx nx run shopping_cart:local:db:start`
+3. Start REST API server with `npx nx serve shopping_cart`
 
 ## Build for production
 

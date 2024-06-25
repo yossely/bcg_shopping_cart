@@ -19,6 +19,30 @@
           "buildTarget": "shopping_cart:build:production"
         }
       }
+    },
+    "local:db:start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose --file apps/shopping_cart/docker-compose.yml up --detach"
+        ]
+      }
+    },
+    "local:db:stop": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose --file apps/shopping_cart/docker-compose.yml stop"
+        ]
+      }
+    },
+    "local:db:destroy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose --file apps/shopping_cart/docker-compose.yml down"
+        ]
+      }
     }
   }
 }
