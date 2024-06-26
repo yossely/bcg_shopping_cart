@@ -8,6 +8,12 @@ import {
 
 export const cartRoutes = Router();
 
+cartRoutes.get('/', async (req: Request, res: Response) => {
+  const cart = await cartService.getBySessionID(req.sessionID);
+
+  res.send({ data: cart });
+});
+
 cartRoutes.post('/items/:sku', async (req: Request, res: Response) => {
   const { sku } = req.params;
   const { quantity } = req.body || {};
