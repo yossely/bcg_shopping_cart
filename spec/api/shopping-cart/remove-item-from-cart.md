@@ -77,8 +77,8 @@ The `data` field contains the `Cart` information updated:
 
 ```json
 {
-  "code": "sku/invalid",
-  "message": "Invalid SKU",
+  "code": "items/not_found",
+  "message": "Item not found",
   "data": {
     "sku": "sku-provided"
   }

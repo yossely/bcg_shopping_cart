@@ -81,15 +81,19 @@ The `data` field contains the `Cart` information updated:
 
 ```json
 {
-  "code": "session_id/invalid",
-  "message": "Invalid Session ID"
+    "code": "carts/invalid_quantity",
+    "message": "Quantity should be greater than 0",
+    "data": {
+        "quantity": 0
+    }
 }
 ```
 
+#### 404 Not Found
 ```json
 {
-  "code": "sku/invalid",
-  "message": "Invalid SKU",
+  "code": "items/not_found",
+  "message": "Item not found",
   "data": {
     "sku": "sku-provided"
   }
