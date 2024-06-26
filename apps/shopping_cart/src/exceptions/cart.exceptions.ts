@@ -3,7 +3,7 @@ import { Item } from '../models/item.model';
 
 export enum CART_EXCEPTIONS {
   INVALID_QUANTITY = 'carts/invalid_quantity',
-  NOT_FOUND = 'carts/not_found',
+  EMPTY = 'carts/empty',
   ITEM_NOT_FOUND = 'carts/item_not_found',
 }
 
@@ -20,15 +20,15 @@ export const buildCartInvalidQuantityException = (
   data,
 });
 
-interface CartNotFoundExceptionData {
+interface EmptyCartExceptionData {
   sessionID: BCGSession['id'];
 }
-type CartNotFoundException = BCGBaseException<CartNotFoundExceptionData>;
-export const buildCartNotFoundException = (
-  data: CartNotFoundExceptionData
-): CartNotFoundException => ({
-  code: CART_EXCEPTIONS.NOT_FOUND,
-  message: 'Cart not found or empty',
+type EmptyCartException = BCGBaseException<EmptyCartExceptionData>;
+export const buildEmptyCartException = (
+  data: EmptyCartExceptionData
+): EmptyCartException => ({
+  code: CART_EXCEPTIONS.EMPTY,
+  message: 'The cart is empty',
   data,
 });
 

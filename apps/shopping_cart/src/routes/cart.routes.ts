@@ -4,7 +4,7 @@ import { cartService, getEmptyCart } from '../services/cart.service';
 import {
   buildItemNotFoundException,
   buildCartInvalidQuantityException,
-  buildCartNotFoundException,
+  buildEmptyCartException,
   buildItemNotFoundInCartException,
 } from '../exceptions';
 
@@ -46,10 +46,10 @@ cartRoutes.delete('/items/:sku', async (req: Request, res: Response) => {
   }
 
   const cart = await cartService.getBySessionID(req.sessionID);
-  if (!cart) {
+  if (!cart || !cart.items.length) {
     return res
-      .status(404)
-      .send(buildCartNotFoundException({ sessionID: req.sessionID }));
+      .status(400)
+      .send(buildEmptyCartException({ sessionID: req.sessionID }));
   }
 
   let itemsInCart = cart.items.find((cartItem) => cartItem.sku === sku);

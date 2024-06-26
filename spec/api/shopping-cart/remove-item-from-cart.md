@@ -80,20 +80,22 @@ The `data` field contains the `Cart` information updated:
 
 ```json
 {
-  "code": "carts/not_found",
-  "message": "Cart not found or empty",
-  "data": {
-    "sessionID": "session-id-provided"
-  }
-}
-```
-
-```json
-{
   "code": "carts/item_not_found",
   "message": "No item found in the cart for the SKU provided",
   "data": {
     "sku": "sku-provided"
+  }
+}
+```
+
+#### 400 Bad Request
+
+```json
+{
+  "code": "carts/empty",
+  "message": "The cart is empty",
+  "data": {
+    "sessionID": "session-id-provided"
   }
 }
 ```
