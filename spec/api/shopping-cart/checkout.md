@@ -49,8 +49,24 @@ The `data` field contains the `Cart` information updated:
 ```json
 {
   "data": {
-    "items": [],
-    "totalPrice": 0
+    "cart": {
+      "items": [],
+      "totalPrice": 0
+    },
+    "order": {
+      "id": "order-id",
+      "createdAt": "2024-06-26T04:22:39.945Z",
+      "items": [
+        {
+          "sku": "120P90",
+          "name": "Google Home",
+          "price": 49.99,
+          "quantity": 1,
+          "totalPrice": 49.99
+        }
+      ],
+      "totalPrice": 49.99
+    }
   }
 }
 ```
@@ -65,15 +81,11 @@ The `data` field contains the `Cart` information updated:
 
 ```json
 {
-  "code": "session_id/invalid",
-  "message": "Invalid Session ID"
-}
-```
-
-```json
-{
-  "code": "cart/empty",
-  "message": "Empty cart, try adding some items first"
+  "code": "carts/empty",
+  "message": "The cart is empty",
+  "data": {
+    "sessionID": "session-id-provided"
+  }
 }
 ```
 

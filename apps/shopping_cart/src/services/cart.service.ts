@@ -18,6 +18,7 @@ export const cartService = {
   getBySessionID: (sessionID: BCGSession['id']) =>
     cartsDal.getBySessionID(sessionID),
   removeItem,
+  clear: clearCart,
 };
 
 async function addItem(
@@ -146,4 +147,12 @@ async function removeItem(
   await cartsDal.setCartForSessionID(sessionID, updatedCart);
 
   return updatedCart;
+}
+
+async function clearCart(sessionID: string): Promise<Cart> {
+  const emptyCart = getEmptyCart();
+
+  await cartsDal.setCartForSessionID(sessionID, emptyCart);
+
+  return emptyCart;
 }
