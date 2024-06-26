@@ -39,8 +39,6 @@ N/A
 
 None
 
-#### Remarks
-
 ### HTTP Response
 
 #### `200 OK`
@@ -67,12 +65,5 @@ The `data` field contains the `Cart` information:
 
 ### Endpoint-Specific Errors
 
-#### 400 Bad Request
-
-```json
-{
-  "code": "session_id/invalid",
-  "message": "Invalid Session ID"
-}
-```
+None
 

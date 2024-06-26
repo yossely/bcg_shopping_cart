@@ -15,6 +15,7 @@ const getEmptyCart = (): Cart => ({ items: [], totalPrice: 0 });
 
 export const cartService = {
   addItem,
+  getBySessionID,
 };
 
 async function addItem(
@@ -125,3 +126,8 @@ const pushItemToCart = (cart: Cart, item: Item, quantity: number) => {
     });
   }
 };
+
+async function getBySessionID(sessionID: string): Promise<Cart> {
+  const cart = await cartsDal.getBySessionID(sessionID);
+  return cart || getEmptyCart();
+}
