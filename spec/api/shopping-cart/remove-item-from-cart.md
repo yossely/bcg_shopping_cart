@@ -44,7 +44,7 @@ None
 
 #### `200 OK`
 
-Item has successfully been removed to the cart.
+Item has successfully been removed to the cart. An empty cart may be returned.
 The `data` field contains the `Cart` information updated:
 
 ```json
@@ -66,14 +66,7 @@ The `data` field contains the `Cart` information updated:
 
 ### Endpoint-Specific Errors
 
-#### 400 Bad Request
-
-```json
-{
-  "code": "session_id/invalid",
-  "message": "Invalid Session ID"
-}
-```
+#### 404 Not Found
 
 ```json
 {
@@ -85,11 +78,19 @@ The `data` field contains the `Cart` information updated:
 }
 ```
 
-#### 404 Not Found
+```json
+{
+  "code": "carts/not_found",
+  "message": "Cart not found or empty",
+  "data": {
+    "sessionID": "session-id-provided"
+  }
+}
+```
 
 ```json
 {
-  "code": "cart/item_not_found",
+  "code": "carts/item_not_found",
   "message": "No item found in the cart for the SKU provided",
   "data": {
     "sku": "sku-provided"

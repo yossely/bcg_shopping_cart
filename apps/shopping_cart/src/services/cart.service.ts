@@ -11,11 +11,13 @@ import {
   RASPBERRY_PI_SKU,
 } from '../core/database/constants';
 
-const getEmptyCart = (): Cart => ({ items: [], totalPrice: 0 });
+export const getEmptyCart = (): Cart => ({ items: [], totalPrice: 0 });
 
 export const cartService = {
   addItem,
-  getBySessionID,
+  getBySessionID: (sessionID: BCGSession['id']) =>
+    cartsDal.getBySessionID(sessionID),
+  removeItem,
 };
 
 async function addItem(
@@ -127,7 +129,21 @@ const pushItemToCart = (cart: Cart, item: Item, quantity: number) => {
   }
 };
 
-async function getBySessionID(sessionID: string): Promise<Cart> {
-  const cart = await cartsDal.getBySessionID(sessionID);
-  return cart || getEmptyCart();
+async function removeItem(
+  sessionID: string,
+  cart: Cart,
+  itemSku: Item['sku']
+): Promise<Cart> {
+  let updatedCart = deepCopy(cart);
+  const cartItemsFiltered = updatedCart.items.filter(
+    (cartItem) => cartItem.sku !== itemSku
+  );
+
+  updatedCart.items = cartItemsFiltered;
+  updatedCart = await applyPromotions(updatedCart);
+  updatedCart.totalPrice = calculateTotal(updatedCart);
+
+  await cartsDal.setCartForSessionID(sessionID, updatedCart);
+
+  return updatedCart;
 }
